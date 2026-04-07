@@ -31,3 +31,13 @@ app.listen(3000, () => {
     console.log("Server running on port 3000");
 });
 
+// view files API
+app.get("/files", (req, res) => {
+    const fs = require("fs");
+    fs.readdir("uploads", (err, files) => {
+        if (err) {
+            return res.status(500).json({ error: "Unable to fetch files" });
+        }
+        res.json(files);
+    });
+});
