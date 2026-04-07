@@ -41,3 +41,9 @@ app.get("/files", (req, res) => {
         res.json(files);
     });
 });
+// download notes
+app.get("/download/:filename", (req, res) => {
+    const path = require("path");
+    const file = path.join(__dirname, "uploads", req.params.filename);
+    res.download(file);
+});
